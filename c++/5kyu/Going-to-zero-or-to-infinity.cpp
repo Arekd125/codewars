@@ -29,16 +29,13 @@ public:
     {
         long double result = 0.0;
         long double factorial = 1.0;
-        for (int i = 1; i <= n; i++)
+        for (int i = 2; i <= n; i++)
         {
             factorial = 1.0;
-            for (int j = 1; j <= i; j++)
-                factorial *= j;
-            result += factorial;
+            for (int j = i; j <= n; j++)
+            factorial*=j;
+            result+=(1/factorial);       
         }
-
-        result = ((result - factorial) / factorial) + 1;
-        result = static_cast<int>(result * 10000000);
-        return result / 10000000;
+        return result+1; 
     }
 };
