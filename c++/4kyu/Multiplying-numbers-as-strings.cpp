@@ -16,7 +16,7 @@ string multiply(string a, string b)
 {
     vector<int> aa;
     vector<int> bb;
-    vector<int> aabb;   // change to  <array>
+    int  aabb[80]{0};   // change to  <array>
     int ab;
 
     for (size_t i = 0; i < a.size(); i++)
@@ -39,23 +39,23 @@ string multiply(string a, string b)
 
         for (size_t j = 0; j < b.size(); j++)
         {
-            ab = aa[i] * (bb[j] + temp);
+            ab = (aa[i] * (bb[j])) + temp;
              temp = 0;
             if ((ab) >= 10)
             {   
                 temp= static_cast<int> (ab/10);
                 cout<<temp<<endl;
             
-                aabb.emplace(aabb.begin(), ab % 10);
-                if (j=b.size()-1)
-                {
-                    aabb.emplace(aabb.begin(), temp);
-                }
+                aabb[j+i]+=(ab % 10);
+                //  if (j=b.size()-1)
+                //  {
+                //      aabb[j+i+1]+=temp;
+                //  }
                 
             }
             else
             {
-                aabb.emplace(aabb.begin(), (ab));
+                aabb[j+i]+=ab;
             }
 
             cout << "aa[" << i << "]=" << aa[i] << " ";
@@ -72,7 +72,7 @@ string multiply(string a, string b)
         }
     }
 
-    for (size_t i = 0; i < aabb.size(); i++)
+    for (size_t i = 0; i < 80; i++)
     {
         cout << aabb[i] << "";
     }
@@ -88,7 +88,7 @@ string multiply(string a, string b)
 int main()
 {
    // cout << "a: " << endl;
-    cout << multiply("25", "25") << endl;
+    cout << multiply("20", "25") << endl;
     // cout <<"a: "<< multiply("2", "3") << endl;
     // cout <<"b: "<< multiply("30", "69") << endl; //2070
     // cout <<"c: "<< multiply("11", "85") << endl;
