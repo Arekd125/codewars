@@ -16,7 +16,8 @@ string multiply(string a, string b)
 {
     vector<int> aa;
     vector<int> bb;
-    int  aabb[80]{0};   // change to  <array>
+    vector<vector<int>> aabb(a.size(), vector<int>(b.size(), 0));
+    // int aabb[80][80];
     int ab;
 
     for (size_t i = 0; i < a.size(); i++)
@@ -29,53 +30,79 @@ string multiply(string a, string b)
     {
 
         bb.emplace(bb.begin(), (static_cast<int>(b[i]) - 48));
-        // bb.push_back((static_cast<int>(b[i]) - 48));
     }
-   
-    for (size_t i = 0; i < a.size(); i++)
-    {   
-       int temp = 0;  
-        
 
-        for (size_t j = 0; j < b.size(); j++)
+    for (size_t i = 0; i < aa.size(); i++)
+    {
+        for (size_t j = 0; j < bb.size(); j++)
         {
-            ab = (aa[i] * (bb[j])) + temp;
-             temp = 0;
-            if ((ab) >= 10)
-            {   
-                temp= static_cast<int> (ab/10);
-                cout<<temp<<endl;
-            
-                aabb[j+i]+=(ab % 10);
-                //  if (j=b.size()-1)
-                //  {
-                //      aabb[j+i+1]+=temp;
-                //  }
-                
-            }
-            else
-            {
-                aabb[j+i]+=ab;
-            }
+            // aabb[i]->push_back(aa[i] * bb[j])
+            aabb[i][j] = aa[i] * bb[j];
+            cout << aabb[i][j] << " ";
+        }
+        cout << endl;
+    }
 
-            cout << "aa[" << i << "]=" << aa[i] << " ";
-            cout << "bb[" << j << "]=" << bb[j] << " ";
-
-            cout << "aabb[" << i << "]=" << aabb[i] << " " << endl;
-
-            // if ((aa[i] * bb[j]) < 9)
-            // {
-
-            // }
-            // else
-            // aabb.emplace(aabb.begin(),(static_cast<int>(aa[i] * bb[j]) / 10));
+    aa.clear();
+    aa.push_back(aabb[0][0]);
+    for (size_t i = 1; i < aabb.size(); i++)
+    {
+        int col = i;
+        int row = i;
+        aa.push_back(0);
+        for (size_t j = 0; j <= i; j++)
+        {
+            aa[i]+=aabb[row--][j];
         }
     }
-
-    for (size_t i = 0; i < 80; i++)
+    for (size_t i = 0; i < aa.size(); i++)
     {
-        cout << aabb[i] << "";
+        cout << aa[i]<<" ";
     }
+
+    // for (size_t i = 0; i < a.size(); i++)
+    // {
+    //    int temp = 0;
+
+    //     for (size_t j = 0; j < b.size(); j++)
+    //     {
+    //         ab = (aa[i] * (bb[j])) + temp;
+    //          temp = 0;
+    //         if ((ab) >= 10)
+    //         {
+    //             temp= static_cast<int> (ab/10);
+    //             cout<<temp<<endl;
+
+    //             aabb[j+i]+=(ab % 10);
+    //             //  if (j=b.size()-1)
+    //             //  {
+    //             //      aabb[j+i+1]+=temp;
+    //             //  }
+
+    //         }
+    //         else
+    //         {
+    //             aabb[j+i]+=ab;
+    //         }
+
+    //         cout << "aa[" << i << "]=" << aa[i] << " ";
+    //         cout << "bb[" << j << "]=" << bb[j] << " ";
+
+    //         cout << "aabb[" << i << "]=" << aabb[i] << " " << endl;
+
+    // if ((aa[i] * bb[j]) < 9)
+    // {
+
+    // }
+    // else
+    // aabb.emplace(aabb.begin(),(static_cast<int>(aa[i] * bb[j]) / 10));
+    //     }
+    // }
+
+    // for (size_t i = 0; i <aa.size(); i++)
+    // {
+    //     cout << aa[i] << "";
+    // }
 
     // unsigned int aa = stoi(a);
     // unsigned int bb = stoi(b);
@@ -87,8 +114,8 @@ string multiply(string a, string b)
 
 int main()
 {
-   // cout << "a: " << endl;
-    cout << multiply("20", "25") << endl;
+    // cout << "a: " << endl;
+    cout << multiply("123", "123") << endl;
     // cout <<"a: "<< multiply("2", "3") << endl;
     // cout <<"b: "<< multiply("30", "69") << endl; //2070
     // cout <<"c: "<< multiply("11", "85") << endl;
