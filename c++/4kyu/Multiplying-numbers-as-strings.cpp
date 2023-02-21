@@ -16,7 +16,7 @@ string multiply(string a, string b)
 {
     vector<int> aa;
     vector<int> bb;
-    vector<vector<int>> aabb(a.size(), vector<int>(b.size(), 0));
+    vector<vector<int>> aabb(80, vector<int>(80, 0));
     // int aabb[80][80];
     int ab;
 
@@ -24,7 +24,6 @@ string multiply(string a, string b)
     {
 
         aa.emplace(aa.begin(), (static_cast<int>(a[i]) - 48));
-        // aa.push_back((static_cast<int>(a[i]) - 48));
     }
     for (size_t i = 0; i < b.size(); i++)
     {
@@ -36,28 +35,43 @@ string multiply(string a, string b)
     {
         for (size_t j = 0; j < bb.size(); j++)
         {
-            // aabb[i]->push_back(aa[i] * bb[j])
             aabb[i][j] = aa[i] * bb[j];
             cout << aabb[i][j] << " ";
         }
         cout << endl;
     }
-
+    //////////////////////////////////////////////////////////////// do poprawy
     aa.clear();
     aa.push_back(aabb[0][0]);
+
+    if (aa[0] > 9)
+    {
+        aa.push_back(static_cast<int>(aa[0] / 10));
+        aa[0] = (aa[0] % 10);
+    }
+    else
+        aa.push_back(0);
     for (size_t i = 1; i < aabb.size(); i++)
     {
-        int col = i;
+        //  int col = i;
         int row = i;
-        aa.push_back(0);
+        //  cout<<"aa"<<aa[i]<<endl;
         for (size_t j = 0; j <= i; j++)
         {
-            aa[i]+=aabb[row--][j];
+            aa[i] += aabb[row--][j];
         }
+        if (aa[i] > 9)
+        {
+            aa.push_back(static_cast<int>(aa[i] / 10));
+            aa[i] = (aa[i] % 10);
+        }
+        else
+            aa.push_back(0);
+        //////////////////////////////////////////////////////////////////////
     }
     for (size_t i = 0; i < aa.size(); i++)
     {
-        cout << aa[i]<<" ";
+        cout << aa[i] << "";
     }
 
     // for (size_t i = 0; i < a.size(); i++)
@@ -115,7 +129,7 @@ string multiply(string a, string b)
 int main()
 {
     // cout << "a: " << endl;
-    cout << multiply("123", "123") << endl;
+    // cout << multiply("25", "25") << endl;
     // cout <<"a: "<< multiply("2", "3") << endl;
     // cout <<"b: "<< multiply("30", "69") << endl; //2070
     // cout <<"c: "<< multiply("11", "85") << endl;
@@ -125,6 +139,6 @@ int main()
     // cout <<"g: "<< multiply("1009", "03") << endl;
     // cout <<"h: "<< multiply("98765", "56894") << endl;
     // cout <<"i: "<< multiply("1020303004875647366210", "2774537626200857473632627613") << endl;
-    // cout <<"j: "<< multiply("58608473622772837728372827", "7586374672263726736374") << endl;
+    cout << "j: " << multiply("58608473622772837728372827", "7586374672263726736374") << endl;
     // cout <<"k: "<< multiply("9007199254740991", "9007199254740991") << endl;
 }
