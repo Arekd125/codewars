@@ -15,46 +15,51 @@
 #include <math.h>
 
 int last_digit(const std::string &str1, const std::string &str2)
-{   
-  unsigned int a,b,c;
-  
-  if(str1.size()==1)
-    a=stoi(str1);
+{
+  unsigned int a, b, c; // a^(..cb)
+  ///////////////////////////// <-a base
+  if (str1.size() == 1)
+    a = stoi(str1);
   else
-   a = (static_cast<int>(str1[str1.size() - 1]) - 48);
-    if (a==0)
-    return 0;
-
-    if (str2.size() == 1)
-    {   
-       // int a= stoi(str1);
-        int b = stoi(str2);
-        if (b==0)
-        return 1;
-        a = pow(a, b);
-        return a % 10;
-    }
-     b = (static_cast<int>(str2[str2.size() - 1]) - 48);
-     c = (static_cast<int>(str2[str2.size() - 2]) - 48);
-  
-        if (b==0 && c==0)
-        return 1;
-
-    unsigned int rezult = pow(a, c);
-    rezult = pow(rezult % 10, 10);
+    a = (static_cast<int>(str1[str1.size() - 1]) - 48);
+  ///////////////////////////// <-b exponent
+  if (str2.size() == 1)
+  {
+    int b = stoi(str2);
+    if (b == 0)
+      return 1;
     a = pow(a, b);
-    rezult = rezult % 10 * a % 10;
-    return rezult % 10;
+    return a % 10;
+  }
+  b = (static_cast<int>(str2[str2.size() - 1]) - 48);
+  ////////////////////////////// <-c  exponent
+  c = (static_cast<int>(str2[str2.size() - 2]) - 48);
+  if (c == 0)
+    c = 10;
+
+  unsigned int rezult = pow(a, c);
+  rezult = pow(rezult % 10, 10);
+  a = pow(a, b);
+  rezult = rezult % 10 * a % 10;
+  return rezult % 10;
 }
 
 int main()
 {
-    std::cout<< last_digit("4", "1")<<" 4"<<std::endl;
-    std::cout<< last_digit("4", "2")<<" 6"<<std::endl;
-    std::cout<< last_digit("9", "7")<<" 9"<<std::endl;
-    std::cout<< last_digit("10", "10000000000")<<" 0"<<std::endl;
-    std::cout<< last_digit("1606938044258990275541962092341162602522202993782792835301376", "2037035976334486086268445688409378161051468393665936250636140449354381299763336706183397376")<<" 6"<<std::endl;
-    std::cout<< last_digit("3715290469715693021198967285016729344580685479654510946723", "68819615221552997273737174557165657483427362207517952651")<<" 7"<<std::endl;
-
-    
+  std::cout << last_digit("0", "3100") << " 1" << std::endl;
+  std::cout << last_digit("12", "2100") << " 6" << std::endl;
+  std::cout << last_digit("13", "100") << " 1" << std::endl;
+  std::cout << last_digit("14", "100") << " 6" << std::endl;
+  std::cout << last_digit("15", "1100") << " 5" << std::endl;
+  std::cout << last_digit("16", "100") << " 6" << std::endl;
+  std::cout << last_digit("57", "100") << " 1" << std::endl;
+  std::cout << last_digit("28", "100") << " 6" << std::endl;
+  std::cout << last_digit("39", "100") << " 1" << std::endl;
+  // std::cout<< last_digit("10", "100")<<" 0"<<std::endl;
+  //  std::cout<< last_digit("4", "1")<<" 4"<<std::endl;
+  //  std::cout<< last_digit("4", "2")<<" 6"<<std::endl;
+  //  std::cout<< last_digit("9", "7")<<" 9"<<std::endl;
+  //  std::cout<< last_digit("10", "10000000000")<<" 0"<<std::endl;
+  //  std::cout<< last_digit("1606938044258990275541962092341162602522202993782792835301376", "2037035976334486086268445688409378161051468393665936250636140449354381299763336706183397376")<<" 6"<<std::endl;
+  //  std::cout<< last_digit("3715290469715693021198967285016729344580685479654510946723", "68819615221552997273737174557165657483427362207517952651")<<" 7"<<std::endl;
 }
