@@ -21,24 +21,55 @@ int last_digit(list<int> array)
     return 1;
   if (array.size() == 1)
     return (array.front() % 10);
-  if (array.size() == 2)
-    return ((int)pow(array.front() % 10, array.back())) % 10;
+  // if (array.size() == 2)
+  //   return ((int)pow(array.front() % 10, array.back())) % 10;
+  unsigned int a, b=0, c, rezult; // a^(..cb)
 
-  unsigned int exponent = (array.back());
+  rezult = (array.back());
   array.pop_back();
 
   while (!array.empty())
   {
-    unsigned int base = (array.back()) % 100;
+    rezult=rezult%100;
+    a = array.back() % 100;
     array.pop_back();
+    if (rezult == 0 )
+      rezult = 1;
+    else if (rezult < 10)
+      rezult = pow(a, rezult);
+    else
+    {
+      b = rezult % 10;
+      c = rezult / 10;
+      if (c == 0)
+        c = 10;
 
-    if (exponent > 9)
-      exponent = (exponent % 4) + 4;
+       rezult = pow(a, c);
+      rezult = pow(rezult % 10, 10);
+      a = pow(a, b);
+      rezult = (rezult%10  * a%100) ;
 
-    exponent = pow(base, exponent);
+    }
+    //cout<<"a: "<<a<<" b: "<<b<< " c: "<<c<<" rezul: "<<rezult<<endl;
   }
 
-  return exponent % 10;
+  return rezult % 10;
+
+  // unsigned int exponent = (array.back());
+  // array.pop_back();
+
+  // while (!array.empty())
+  // {
+  //   unsigned int base = (array.back()) % 100;
+  //   array.pop_back();
+
+  //   if (exponent > 9)
+  //     exponent = (exponent % 4) + 4;
+
+  //   exponent = pow(base, exponent);
+  // }
+
+  // return exponent % 10;
 }
 
 int main()
