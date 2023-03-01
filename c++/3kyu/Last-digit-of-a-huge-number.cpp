@@ -12,14 +12,15 @@
 #include <list>
 #include <iostream>
 #include <math.h>
-unsigned int power1(int n, int p) {
- unsigned int ans = 1;
-  for (int i = 0; i < p; i++) {
-    ans *= n;
-    ans%=1000;
-  }
-  return ans;
-}
+// unsigned int power1(int n, int p) {
+//  unsigned int ans = 1;
+//   for (int i = 0; i < p; i++) {
+//     ans *= n;
+//     ans%=1000;
+//   }
+//   return ans;
+// }
+
 using namespace std;
 int last_digit(list<int> array)
 {
@@ -49,21 +50,21 @@ int last_digit(list<int> array)
     else if (a == 0 && rezult != 0)
       rezult = 0;
     else if (rezult < 10)
-      rezult = power1(a % 100, rezult);
+      rezult = pow(a % 10, rezult);
     else
     {
-      a = a % 100;
+      a = a % 10;
       b = rezult % 10;
-     //  cout<<"b "<<b<<" ";
+      // cout<<"b "<<b<<" ";
       c = (rezult / 10) % 10;
       if (c == 0)
         c = 10;
 
-      rezult = power1(a, c);
-      rezult = power1(rezult % 10, 10);
-      b = power1(a, b);
-      b = b % 10;
-      rezult = (rezult%10000  * b%10000 );
+      rezult = pow(a, c);
+      rezult = pow(rezult % 10, 10);
+      b = pow(a, b);
+    //  b = b % 10;
+      rezult = (rezult % 10 * b % 100);
       if (a == 0)
         rezult = 100;
     }
