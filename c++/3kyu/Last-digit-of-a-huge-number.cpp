@@ -12,7 +12,14 @@
 #include <list>
 #include <iostream>
 #include <math.h>
-
+unsigned int power1(int n, int p) {
+ unsigned int ans = 1;
+  for (int i = 0; i < p; i++) {
+    ans *= n;
+    ans%=1000;
+  }
+  return ans;
+}
 using namespace std;
 int last_digit(list<int> array)
 {
@@ -42,26 +49,26 @@ int last_digit(list<int> array)
     else if (a == 0 && rezult != 0)
       rezult = 0;
     else if (rezult < 10)
-      rezult = pow(a % 100, rezult);
+      rezult = power1(a % 100, rezult);
     else
     {
       a = a % 100;
       b = rezult % 10;
-       cout<<"b "<<b<<" ";
+     //  cout<<"b "<<b<<" ";
       c = (rezult / 10) % 10;
       if (c == 0)
         c = 10;
 
-      rezult = pow(a, c);
-      rezult = pow(rezult % 10, 10);
-      b = pow(a, b);
+      rezult = power1(a, c);
+      rezult = power1(rezult % 10, 10);
+      b = power1(a, b);
       b = b % 10;
-      rezult = (rezult % 10 * b % 100);
+      rezult = (rezult%10000  * b%10000 );
       if (a == 0)
         rezult = 100;
     }
     // cout<<endl;
-    cout << "a: " << a << " b: " << b << " c: " << c << " rezul: " << rezult << endl;
+   // cout << "a: " << a << " b: " << b << " c: " << c << " rezul: " << rezult << endl;
   }
   return rezult % 10;
 }
@@ -69,16 +76,16 @@ int last_digit(list<int> array)
 int main()
 {
   cout << last_digit({82242, 254719, 736371}) << " 8" << endl;
-  // cout << last_digit({}) << " 1" << endl;                       //  Equals(1));
-  // cout << last_digit({0, 0}) << " 1" << endl;                   //  Equals(1));
-  // cout << last_digit({0, 0, 0}) << " 0" << endl;                //  Equals(0));
-  // cout << last_digit({1, 2}) << " 1" << endl;                   //  Equals(1));
-  // cout << last_digit({3, 4, 5}) << " 1" << endl;                //  Equals(1));
-  // cout << last_digit({4, 3, 6}) << " 4" << endl;                //  Equals(4));
-  // cout << last_digit({7, 6, 21}) << " 1" << endl;               //  Equals(1));
-  // cout << last_digit({12, 30, 21}) << " 6" << endl;             // Equals(6));
-  // cout << last_digit({2, 2, 2, 0}) << " 4" << endl;             // Equals(4));
-  // cout << last_digit({937640, 767456, 981242}) << " 0" << endl; //  Equals(0));
-  // cout << last_digit({123232, 694022, 140249}) << " 6" << endl; //  Equals(6));
-  // cout << last_digit({499942, 898102, 846073}) << " 6" << endl; //  Equals(6));
+  cout << last_digit({}) << " 1" << endl;                       //  Equals(1));
+  cout << last_digit({0, 0}) << " 1" << endl;                   //  Equals(1));
+  cout << last_digit({0, 0, 0}) << " 0" << endl;                //  Equals(0));
+  cout << last_digit({1, 2}) << " 1" << endl;                   //  Equals(1));
+  cout << last_digit({3, 4, 5}) << " 1" << endl;                //  Equals(1));
+  cout << last_digit({4, 3, 6}) << " 4" << endl;                //  Equals(4));
+  cout << last_digit({7, 6, 21}) << " 1" << endl;               //  Equals(1));
+  cout << last_digit({12, 30, 21}) << " 6" << endl;             // Equals(6));
+  cout << last_digit({2, 2, 2, 0}) << " 4" << endl;             // Equals(4));
+  cout << last_digit({937640, 767456, 981242}) << " 0" << endl; //  Equals(0));
+  cout << last_digit({123232, 694022, 140249}) << " 6" << endl; //  Equals(6));
+  cout << last_digit({499942, 898102, 846073}) << " 6" << endl; //  Equals(6));
 }
