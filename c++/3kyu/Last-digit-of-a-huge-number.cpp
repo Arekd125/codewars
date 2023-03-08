@@ -20,14 +20,14 @@ unsigned long long power(int a, int expo)
   unsigned long long rezult = 1;
   while (expo > 0) ///  a^b
   {
-    int b = expo % 10;
-
+    unsigned long long  b = expo % 10;
+    b= pow(a, b % 10);
     for (size_t i = 0; i < n; i++)
     {
       //  cout << i << " ";
       b = pow(b % 10, 10);
     }
-    rezult *= pow(a, b % 10);
+    rezult *=b%100;
     n++;
     expo = expo / 10;
     // cout << expo << " ";
@@ -43,8 +43,6 @@ int last_digit(list<int> array)
     return 1;
   if (array.size() == 1)
     return (array.front() % 10);
-  // if (array.size() == 2)
-  //   return ((int)pow(array.front() % 10, array.back())) % 10;
   unsigned long long base, rezult;
 
   rezult = (array.back());
@@ -52,54 +50,40 @@ int last_digit(list<int> array)
 
   while (!array.empty())
   {
-    base = array.back() % 10;
+    base = array.back() ;
     array.pop_back();
 
-    if (rezult == 0)
-      rezult = 1;
-    else if (base == 0)
+    if (base == 0)
       if (rezult == 0)
         rezult = 1;
       else
         rezult = 0;
-    //   cout << "rezult: " << rezult << endl;
+   
+    else if( base%10==0 || base%10==1)
+    {
+      rezult=100;
+    }
     else
-      rezult = power(base, rezult);
+    rezult = power(base%1000, rezult);
+    
 
-    //   else{
-    //   b = rezult % 10;
-    //   b = pow(a, b);
-
-    //   c = (rezult / 10) % 10;
-    //   c = pow(a, c);
-    //   c = pow(c % 10, 10);
-
-    //   d = (rezult / 10) % 10;
-    //   d = pow(a, d);
-    //   d = pow(d % 10, 10);
-    //   d = pow(d % 10, 10);
-
-    //   rezult = (b * c * d);
-    // }
-    // cout<<endl;
-    // cout << "a: " << a << " b: " << b << " c: " << c <<" d: "<<d<< " rezul: " << rezult << endl;
   }
   return rezult % 10;
 }
 
 int main()
 {
-  cout <<"_1_ "<< last_digit({2, 22}) << " 4" << endl;
-  cout <<"_2_ "<< last_digit({}) << " 1" << endl;                       //  Equals(1));
-  cout <<"_3_ "<< last_digit({0, 0}) << " 1" << endl;                   //  Equals(1));
-  cout <<"_4_ "<< last_digit({0, 0, 0}) << " 0" << endl;                //  Equals(0));
-  cout <<"_5_ "<< last_digit({1, 2}) << " 1" << endl;                   //  Equals(1));
-  cout <<"_6_ "<< last_digit({3, 4, 5}) << " 1" << endl;                //  Equals(1));
-  cout <<"_7_ "<< last_digit({4, 3, 6}) << " 4" << endl;                //  Equals(4));
-  cout <<"_8_ "<< last_digit({7, 6, 21}) << " 1" << endl;               //  Equals(1));
-  cout <<"_9_ "<< last_digit({12, 30, 21}) << " 6" << endl;             // Equals(6));
-  cout <<"_1_ "<< last_digit({2, 2, 2, 0}) << " 4" << endl;             // Equals(4));
-  cout <<"_2_ "<< last_digit({937640, 767456, 981242}) << " 0" << endl; //  Equals(0));
-  cout <<"_3_ "<< last_digit({123232, 694022, 140249}) << " 6" << endl; //  Equals(6));
-  cout <<"_4_ "<< last_digit({499942, 898102, 846073}) << " 6" << endl; //  Equals(6));
+  cout <<"_1_ "<< last_digit({2,2,101,2}) << " 1" << endl;
+  // cout <<"_2_ "<< last_digit({}) << " 1" << endl;                       //  Equals(1));
+  // cout <<"_3_ "<< last_digit({0, 0}) << " 1" << endl;                   //  Equals(1));
+  // cout <<"_4_ "<< last_digit({0, 0, 0}) << " 0" << endl;                //  Equals(0));
+  // cout <<"_5_ "<< last_digit({1, 2}) << " 1" << endl;                   //  Equals(1));
+  // cout <<"_6_ "<< last_digit({3, 4, 5}) << " 1" << endl;                //  Equals(1));
+  // cout <<"_7_ "<< last_digit({4, 3, 6}) << " 4" << endl;                //  Equals(4));
+  // cout <<"_8_ "<< last_digit({7, 6, 21}) << " 1" << endl;               //  Equals(1));
+  // cout <<"_9_ "<< last_digit({12, 30, 21}) << " 6" << endl;             // Equals(6));
+  // cout <<"_1_ "<< last_digit({2, 2, 2, 0}) << " 4" << endl;             // Equals(4));
+  // cout <<"_2_ "<< last_digit({937640, 767456, 981242}) << " 0" << endl; //  Equals(0));
+  // cout <<"_3_ "<< last_digit({123232, 694022, 140249}) << " 6" << endl; //  Equals(6));
+  // cout <<"_4_ "<< last_digit({499942, 898102, 846073}) << " 6" << endl; //  Equals(6));
 }
