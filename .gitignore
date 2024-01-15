@@ -33,3 +33,6 @@
 *.exe
 *.out
 *.app
+/cs/codewars/.vs/codewars/DesignTimeBuild
+/cs/codewars/.vs/codewars/FileContentIndex
+/cs/codewars/.vs/codewars/v17
