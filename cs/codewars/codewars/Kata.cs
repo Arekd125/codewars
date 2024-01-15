@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace codewars
+﻿namespace codewars
 {
-    internal class Kata
+    internal class Paper
     {
-        public static string HoopCount(int n)
+        public static int Paperwork(int n, int m)
         {
-            return n >= 10 ? "Great, now move on to tricks" : "Keep at it until you get it";
+            return (n < 0 || m < 0) ? 0 : n * m;
         }
     }
-}
