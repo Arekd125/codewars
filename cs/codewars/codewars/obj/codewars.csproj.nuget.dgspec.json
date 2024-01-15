@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Arek\\source\\repos\\codewars\\cs\\codewars\\codewars\\codewars.csproj": {}
+    "C:\\Users\\Arek\\Source\\Repos\\codewars\\cs\\codewars\\codewars\\codewars.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Arek\\source\\repos\\codewars\\cs\\codewars\\codewars\\codewars.csproj": {
+    "C:\\Users\\Arek\\Source\\Repos\\codewars\\cs\\codewars\\codewars\\codewars.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Arek\\source\\repos\\codewars\\cs\\codewars\\codewars\\codewars.csproj",
+        "projectUniqueName": "C:\\Users\\Arek\\Source\\Repos\\codewars\\cs\\codewars\\codewars\\codewars.csproj",
         "projectName": "codewars",
-        "projectPath": "C:\\Users\\Arek\\source\\repos\\codewars\\cs\\codewars\\codewars\\codewars.csproj",
+        "projectPath": "C:\\Users\\Arek\\Source\\Repos\\codewars\\cs\\codewars\\codewars\\codewars.csproj",
         "packagesPath": "C:\\Users\\Arek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Arek\\source\\repos\\codewars\\cs\\codewars\\codewars\\obj\\",
+        "outputPath": "C:\\Users\\Arek\\Source\\Repos\\codewars\\cs\\codewars\\codewars\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
